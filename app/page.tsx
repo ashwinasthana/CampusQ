@@ -140,20 +140,20 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/20 bg-white/40 backdrop-blur-xl">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-col items-center space-y-6">
             {/* Brand Section */}
-            <div className="md:col-span-2">
-              <div className="flex items-center mb-4">
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mr-3">
                   <QrCode className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-xl font-bold text-gray-900">CampusQ</span>
               </div>
-              <p className="text-gray-600 mb-4 max-w-md">
-                Revolutionizing campus queue management with intelligent, real-time solutions for educational institutions worldwide.
+              <p className="text-gray-600 mb-6 max-w-md">
+                Revolutionizing campus queue management with intelligent, real-time solutions.
               </p>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center justify-center space-x-4 mb-6">
                 <motion.a
                   href="https://github.com/ashwinasthana"
                   target="_blank"
@@ -177,39 +177,19 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Product Links */}
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
-              <ul className="space-y-2">
-                <li><Link href="/create" className="text-gray-600 hover:text-blue-600 transition-colors">Create Queue</Link></li>
-                <li><Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">Join Queue</Link></li>
-                <li><a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a></li>
-              </ul>
-            </div>
-
-            {/* Company Links */}
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li><a href="mailto:ashwin@campusq.com" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Privacy</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Terms</a></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row justify-between items-center">
-            <div className="flex items-center text-gray-600 mb-4 sm:mb-0">
-              <span className="text-sm">© 2024 CampusQ. All rights reserved.</span>
-            </div>
-            <div className="flex items-center text-gray-500 text-sm">
-              <span>Built with</span>
-              <Heart className="w-4 h-4 text-red-500 mx-1" />
-              <span>by</span>
-              <a href="https://github.com/ashwinasthana" className="font-medium text-gray-700 hover:text-blue-600 ml-1 transition-colors">
-                Ashwin Asthana
-              </a>
+            {/* Bottom Section */}
+            <div className="border-t border-gray-200 pt-6 flex flex-col sm:flex-row justify-between items-center w-full">
+              <div className="flex items-center text-gray-600 mb-4 sm:mb-0">
+                <span className="text-sm">© 2024 CampusQ. All rights reserved.</span>
+              </div>
+              <div className="flex items-center text-gray-500 text-sm">
+                <span>Built with</span>
+                <Heart className="w-4 h-4 text-red-500 mx-1" />
+                <span>by</span>
+                <a href="https://github.com/ashwinasthana" className="font-medium text-gray-700 hover:text-blue-600 ml-1 transition-colors">
+                  Ashwin Asthana
+                </a>
+              </div>
             </div>
           </div>
         </div>
