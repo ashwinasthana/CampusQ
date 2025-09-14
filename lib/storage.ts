@@ -1,5 +1,6 @@
 import { supabase } from './supabase'
 import { Queue, QueueItem } from './types'
+import { sanitizeLog } from './security'
 
 export const storage = {
   createQueue: async (queue: Queue): Promise<Queue> => {
@@ -19,7 +20,7 @@ export const storage = {
       .single()
     
     if (error) {
-      console.error('Supabase error:', error)
+      console.error('Supabase error:', sanitizeLog(error?.message || 'Unknown error'))
       throw error
     }
     return {
@@ -36,7 +37,7 @@ export const storage = {
       .single()
     
     if (error) {
-      console.error('Get queue error:', error)
+      console.error('Get queue error:', sanitizeLog(error?.message || 'Unknown error'))
       return null
     }
     

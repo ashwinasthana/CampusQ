@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { storage } from '@/lib/storage'
 import { Queue, SERVICE_CATEGORIES } from '@/lib/types'
+import { sanitizeInput, generateSecureId } from '@/lib/security'
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,12 +11,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid data' }, { status: 400 })
     }
 
-    const queueId = Math.random().toString(36).substring(2, 15)
+    const queueId = generateSecureId()
     
     const queue: Queue = {
       id: queueId,
-      title,
-      category,
+      title: sanitizeInput(title),
+      category: sanitizeInput(category),
       services: [...SERVICE_CATEGORIES[category as keyof typeof SERVICE_CATEGORIES].services],
       items: [],
       isActive: true,
@@ -31,17 +32,21 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url)
-  const id = searchParams.get('id')
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
 
-  if (id) {
-    const queue = await storage.getQueue(id)
-    if (!queue) {
-      return NextResponse.json({ error: 'Queue not found' }, { status: 404 })
+    if (id) {
+      const queue = await storage.getQueue(sanitizeInput(id))
+      if (!queue) {
+        return NextResponse.json({ error: 'Queue not found' }, { status: 404 })
+      }
+      return NextResponse.json(queue)
     }
-    return NextResponse.json(queue)
-  }
 
-  const queues = await storage.getAllQueues()
-  return NextResponse.json(queues)
+    const queues = await storage.getAllQueues()
+    return NextResponse.json(queues)
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch queues' }, { status: 500 })
+  }
 }

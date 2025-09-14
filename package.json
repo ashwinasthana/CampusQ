@@ -11,7 +11,9 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.38.4",
     "framer-motion": "^10.16.16",
+    "helmet": "^8.1.0",
     "html2canvas": "^1.4.1",
+    "isomorphic-dompurify": "^2.26.0",
     "jspdf": "^2.5.1",
     "jsqr": "^1.4.0",
     "lucide-react": "^0.303.0",

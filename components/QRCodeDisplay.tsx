@@ -15,9 +15,22 @@ export default function QRCodeDisplay({ queueId, title }: QRCodeDisplayProps) {
   const queueUrl = `${window.location.origin}/join?id=${queueId}`
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(queueUrl)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    try {
+      await navigator.clipboard.writeText(queueUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error)
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = queueUrl
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
   }
 
   const handlePrint = async () => {
@@ -27,10 +40,21 @@ export default function QRCodeDisplay({ queueId, title }: QRCodeDisplayProps) {
       
       const printWindow = window.open('', '_blank')
       if (printWindow) {
+        const sanitizedTitle = title.replace(/[<>"'&]/g, (match) => {
+          const entities: { [key: string]: string } = {
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+            '&': '&amp;'
+          }
+          return entities[match] || match
+        })
+        
         printWindow.document.write(`
           <html>
             <head>
-              <title>Queue QR Code - ${title}</title>
+              <title>Queue QR Code - ${sanitizedTitle}</title>
               <style>
                 @media print {
                   body { margin: 0; padding: 20px; }
@@ -72,7 +96,7 @@ export default function QRCodeDisplay({ queueId, title }: QRCodeDisplayProps) {
               </style>
             </head>
             <body>
-              <h1>${title}</h1>
+              <h1>${sanitizedTitle}</h1>
               <p>Scan this QR code to join the queue</p>
               <div class="qr-container">
                 <img src="${dataUrl}" alt="QR Code" width="300" height="300" />
