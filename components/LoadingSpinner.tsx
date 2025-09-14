@@ -11,9 +11,9 @@ export default function LoadingSpinner() {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2">
             Campus<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Q</span>
           </h1>
         </motion.div>

@@ -174,31 +174,31 @@ export default function QRScanner({ onClose }: QRScannerProps) {
             </button>
           </div>
         ) : loading ? (
-          <div className="text-center py-8">
+          <div className="text-center py-8 sm:py-12">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+              className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6"
             >
-              <Zap className="w-8 h-8 text-white" />
+              <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </motion.div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">QR Code Found!</h3>
-            <p className="text-gray-600">Redirecting you to the queue...</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">QR Code Found!</h3>
+            <p className="text-sm sm:text-base text-gray-600">Redirecting you to the queue...</p>
           </div>
         ) : noQrFound ? (
-          <div className="text-center py-8">
-            <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <AlertCircle className="w-8 h-8 text-yellow-600" />
+          <div className="text-center py-8 sm:py-12">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <AlertCircle className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No QR Code Found</h3>
-            <p className="text-gray-600 mb-4">Please make sure the QR code is clearly visible and try again.</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">No QR Code Found</h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Please make sure the QR code is clearly visible and try again.</p>
             <button
               onClick={() => {
                 setNoQrFound(false)
                 setLoading(false)
                 startCamera()
               }}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all text-sm sm:text-base"
             >
               Try Again
             </button>
