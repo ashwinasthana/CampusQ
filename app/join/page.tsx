@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Users, Clock, Sparkles } from 'lucide-react'
+import { ArrowLeft, Users, Clock, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Queue, QueueItem, PATIENCE_QUOTES } from '@/lib/types'
@@ -166,8 +166,8 @@ export default function JoinQueuePage() {
               animate={{ opacity: 1, scale: 1 }}
               className="bg-white/60 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-8 shadow-xl text-center"
             >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
 
               <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-900">You're in!</h1>

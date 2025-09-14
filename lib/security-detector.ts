@@ -20,8 +20,8 @@ export class SecurityDetector {
     /document\.cookie\s*=/gi,
     /document\.write\s*\(/gi,
     /eval\s*\(\s*["'][^"']*["']\s*\)/gi,
-    /setTimeout\s*\(\s*["'][^"']*javascript:/gi,
-    /setInterval\s*\(\s*["'][^"']*javascript:/gi
+    /setTimeout\s*\(\s*["'][^']*javascript:/gi,
+    /setInterval\s*\(\s*["'][^']*javascript:/gi
   ]
 
   // SQL injection patterns - more specific to avoid matching normal query params
@@ -95,13 +95,7 @@ export class SecurityDetector {
     // First, check if it's a legitimate browser user agent
     const isLegitimateBrowser = this.LEGITIMATE_BROWSERS.some(pattern => pattern.test(userAgent))
     if (isLegitimateBrowser) {
-      // For legitimate browsers, check for suspicious headers
-      const hasSuspiciousHeaders = this.SUSPICIOUS_HEADERS.some(header =>
-        headers[header.toLowerCase()] !== undefined
-      )
-      if (hasSuspiciousHeaders) {
-        return true
-      }
+      // Allow legitimate browsers without checking headers, as headers like x-forwarded-for are common
       return false
     }
 

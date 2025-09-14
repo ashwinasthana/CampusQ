@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation'
 import { Queue, QueueItem } from '@/lib/types'
 import QRCodeDisplay from '@/components/QRCodeDisplay'
 import CloseQueueModal from '@/components/CloseQueueModal'
+import QueueMemberDialog from '@/components/QueueMemberDialog'
 import { supabase } from '@/lib/supabase'
 import LoadingSpinner from '@/components/LoadingSpinner'
 
@@ -274,12 +275,14 @@ export default function QueueManagementPage() {
                         <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">
                           {item.position}
                         </div>
-                        <div>
-                          <h4 className="font-medium text-gray-900">{item.name}</h4>
-                          <p className="text-sm text-gray-600">
-                            {item.service} {item.details && `• ${item.details}`}
-                          </p>
-                        </div>
+                        <QueueMemberDialog member={item}>
+                          <div className="cursor-pointer">
+                            <h4 className="font-medium text-gray-900">{item.name}</h4>
+                            <p className="text-sm text-gray-600">
+                              {item.service} {item.details && `• ${item.details}`}
+                            </p>
+                          </div>
+                        </QueueMemberDialog>
                       </div>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
