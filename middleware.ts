@@ -1,9 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { RateLimiter } from './lib/security'
 
-// Rate limiter instances
-const apiLimiter = new RateLimiter(50, 15 * 60 * 1000) // 50 requests per 15 minutes
-const generalLimiter = new RateLimiter(200, 15 * 60 * 1000) // 200 requests per 15 minutes
+// Simple in-memory rate limiting
+const requests = new Map<string, number[]>()
+
+function isRateLimited(ip: string, maxRequests: number = 100, windowMs: number = 15 * 60 * 1000): boolean {
+  const now = Date.now()
+  const userRequests = requests.get(ip) || []
+  
+  // Remove old requests
+  const validRequests = userRequests.filter(time => now - time < windowMs)
+  
+  if (validRequests.length >= maxRequests) {
+    return true
+  }
+  
+  validRequests.push(now)
+  requests.set(ip, validRequests)
+  return false
+}
 
 export function middleware(request: NextRequest) {
   const response = NextResponse.next()
@@ -40,13 +54,13 @@ export function middleware(request: NextRequest) {
   const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/')
   
-  const limiter = isApiRoute ? apiLimiter : generalLimiter
+  const maxRequests = isApiRoute ? 50 : 200
   
-  if (!limiter.isAllowed(ip)) {
+  if (isRateLimited(ip, maxRequests)) {
     return new NextResponse('Too Many Requests', { 
       status: 429,
       headers: {
-        'Retry-After': '900' // 15 minutes
+        'Retry-After': '900'
       }
     })
   }
