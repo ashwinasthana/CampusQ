@@ -31,6 +31,9 @@ export function middleware(request: NextRequest) {
   const blockTime = blockedIPs.get(ip)
   if (blockTime && Date.now() - blockTime < 300000) { // 5 minute block
     console.log(`Security: Blocked IP ${ip} - Previous malicious activity`)
+    // Add detailed logging for debugging
+    console.log('Request headers:', Object.fromEntries(request.headers.entries()))
+    console.log('Request URL:', request.nextUrl.href)
     return new NextResponse('Access Denied: Malicious Activity Detected', {
       status: 403,
       headers: {

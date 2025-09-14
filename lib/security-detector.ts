@@ -64,7 +64,6 @@ export class SecurityDetector {
 
   // Suspicious headers that indicate automated tools
   private static SUSPICIOUS_HEADERS = [
-    'x-forwarded-for',
     'x-originating-ip',
     'x-remote-ip',
     'x-cluster-client-ip'
