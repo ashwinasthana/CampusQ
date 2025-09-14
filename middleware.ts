@@ -27,11 +27,12 @@ export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || ''
   const url = request.nextUrl.pathname + request.nextUrl.search
   
-  // Check if IP is temporarily blocked
+  // Remove blocking for false flags, keep only rate limiting and security headers
+  // Commenting out IP blocking and hacking tool detection
+  /*
   const blockTime = blockedIPs.get(ip)
-  if (blockTime && Date.now() - blockTime < 300000) { // 5 minute block
+  if (blockTime && Date.now() - blockTime < 300000) {
     console.log(`Security: Blocked IP ${ip} - Previous malicious activity`)
-    // Add detailed logging for debugging
     console.log('Request headers:', Object.fromEntries(request.headers.entries()))
     console.log('Request URL:', request.nextUrl.href)
     return new NextResponse('Access Denied: Malicious Activity Detected', {
@@ -42,7 +43,6 @@ export function middleware(request: NextRequest) {
     })
   }
 
-  // Detect hacking tools
   const headers = Object.fromEntries(request.headers.entries())
   if (SecurityDetector.detectHackingTool(userAgent, headers)) {
     console.log(`Security: Blocked hacking tool from IP ${ip}, UA: ${userAgent}`)
@@ -54,6 +54,7 @@ export function middleware(request: NextRequest) {
       }
     })
   }
+  */
 
   // Remove blocking for malicious input to avoid false positives, keep only hacking tool and rate limiting blocks
   // Commenting out malicious input blocking for now
