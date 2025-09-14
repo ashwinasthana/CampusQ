@@ -55,9 +55,10 @@ export function middleware(request: NextRequest) {
     })
   }
 
-  // Check URL query params for malicious patterns with improved false positive handling
+  // Remove blocking for malicious input to avoid false positives, keep only hacking tool and rate limiting blocks
+  // Commenting out malicious input blocking for now
+  /*
   if (SecurityDetector.isMaliciousInput(request.nextUrl.search)) {
-    // Only count suspicious attempts if query is not empty and not a known safe path
     const safePaths = ['/favicon.ico', '/robots.txt', '/sitemap.xml']
     if (!safePaths.includes(request.nextUrl.pathname) && request.nextUrl.search) {
       const attempts = (suspiciousAttempts.get(ip) || 0) + 1
@@ -77,6 +78,7 @@ export function middleware(request: NextRequest) {
       })
     }
   }
+  */
   
   const response = NextResponse.next()
   
