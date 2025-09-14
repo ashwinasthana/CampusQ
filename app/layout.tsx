@@ -7,7 +7,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-  title: 'CampusQ - Smart Campus Queue Management',
+  title: 'CampusQ',
   description: 'Efficient queue management for campus services',
 }
 
