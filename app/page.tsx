@@ -84,7 +84,6 @@ export default function HomePage() {
                 onClick={() => setShowScanner(true)}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/70 backdrop-blur-sm border border-white/20 text-gray-700 font-semibold rounded-xl sm:rounded-2xl hover:bg-white/90 transition-all duration-300 text-sm sm:text-base"
               >
                 Join Queue
