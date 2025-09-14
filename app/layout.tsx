@@ -25,13 +25,15 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta property="og:image" content="/og-image.svg" />
+        <meta property="og:image" content="https://campusq.vercel.app/og-image.svg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:title" content="CampusQ - Smart Campus Queue Management" />
         <meta property="og:description" content="Transform your campus experience with intelligent queue management. No more waiting in lines." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://campusq.vercel.app" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="/og-image.svg" />
+        <meta name="twitter:image" content="https://campusq.vercel.app/og-image.svg" />
       </head>
       <body className={`${montserrat.className} min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100`}>
         {children}
