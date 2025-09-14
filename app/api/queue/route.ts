@@ -12,13 +12,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid data' }, { status: 400 })
     }
     
-    // Security validation
-    const titleValidation = SecurityDetector.sanitizeAndValidate(title)
-    if (!titleValidation.isValid) {
-      return NextResponse.json({ 
-        error: 'Security Alert: Malicious input detected. Your attempt has been logged.' 
+    // Security validation - only check for XSS since titles are displayed
+    if (SecurityDetector.detectXSS(title)) {
+      return NextResponse.json({
+        error: 'Security Alert: Malicious input detected. Your attempt has been logged.'
       }, { status: 403 })
     }
+
+    const titleValidation = SecurityDetector.sanitizeAndValidate(title)
 
     const queueId = generateSecureId()
     
