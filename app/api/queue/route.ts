@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const queue: Queue = {
       id: queueId,
       title: sanitizeInput(title),
-      category: sanitizeInput(category),
+      category,
       services: [...SERVICE_CATEGORIES[category as keyof typeof SERVICE_CATEGORIES].services],
       items: [],
       isActive: true,
