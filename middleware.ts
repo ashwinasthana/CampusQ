@@ -55,15 +55,15 @@ export function middleware(request: NextRequest) {
     })
   }
 
-  // Check URL for malicious patterns with improved false positive handling
-  if (SecurityDetector.isMaliciousInput(url)) {
-    // Only count suspicious attempts if URL is not a known safe path
+  // Check URL query params for malicious patterns with improved false positive handling
+  if (SecurityDetector.isMaliciousInput(request.nextUrl.search)) {
+    // Only count suspicious attempts if query is not empty and not a known safe path
     const safePaths = ['/favicon.ico', '/robots.txt', '/sitemap.xml']
-    if (!safePaths.includes(url)) {
+    if (!safePaths.includes(request.nextUrl.pathname) && request.nextUrl.search) {
       const attempts = (suspiciousAttempts.get(ip) || 0) + 1
       suspiciousAttempts.set(ip, attempts)
 
-      console.log(`Security: Malicious input detected from IP ${ip}, URL: ${url}, attempts: ${attempts}`)
+      console.log(`Security: Malicious input detected from IP ${ip}, query: ${request.nextUrl.search}, attempts: ${attempts}`)
 
       if (attempts >= 5) {
         blockedIPs.set(ip, Date.now())

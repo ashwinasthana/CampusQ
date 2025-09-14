@@ -98,15 +98,8 @@ export class SecurityDetector {
       return false
     }
 
-    // For non-browser user agents (like curl, wget, etc.), only block if they have suspicious headers
-    // This allows legitimate tools while blocking automated attacks
-    const hasSuspiciousHeaders = this.SUSPICIOUS_HEADERS.some(header =>
-      headers[header.toLowerCase()] !== undefined
-    )
-    if (hasSuspiciousHeaders) {
-      return true
-    }
-
+    // For non-browser user agents, allow them as they may be legitimate tools
+    // Only block known hacking tools
     return false
   }
 
