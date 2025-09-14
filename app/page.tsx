@@ -45,15 +45,19 @@ export default function HomePage() {
               Campus<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Q</span>
             </motion.h1>
             
-            <motion.p 
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-8 sm:mb-12 leading-relaxed max-w-4xl mx-auto px-2"
+              className="text-center mb-8 sm:mb-12 max-w-4xl mx-auto px-2"
             >
-              Transform your campus experience with intelligent queue management. 
-              <span className="text-blue-600 font-semibold"> No more waiting in lines.</span>
-            </motion.p>
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed mb-2">
+                Transform your campus experience with intelligent queue management.
+              </p>
+              <p className="text-lg sm:text-xl lg:text-2xl text-blue-600 font-semibold">
+                No more waiting in lines.
+              </p>
+            </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
               <motion.div
