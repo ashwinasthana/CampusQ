@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Camera, X, Zap, AlertCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import jsQR from 'jsqr'
+import LoadingSpinner from './LoadingSpinner'
 
 interface QRScannerProps {
   onClose: () => void
@@ -108,7 +109,7 @@ export default function QRScanner({ onClose }: QRScannerProps) {
                 stopCamera()
                 onClose()
                 router.push(`/join?id=${queueId}`)
-              }, 1000)
+              }, 2000)
               return
             }
           } catch {
@@ -117,7 +118,7 @@ export default function QRScanner({ onClose }: QRScannerProps) {
               stopCamera()
               onClose()
               router.push(`/join?id=${code.data}`)
-            }, 1000)
+            }, 2000)
             return
           }
         }
