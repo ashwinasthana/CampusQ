@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Camera, X, Zap } from 'lucide-react'
+import { Camera, X, Zap, AlertCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import jsQR from 'jsqr'
 
@@ -12,15 +12,21 @@ interface QRScannerProps {
 
 export default function QRScanner({ onClose }: QRScannerProps) {
   const [scanning, setScanning] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [noQrFound, setNoQrFound] = useState(false)
   const [error, setError] = useState('')
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const router = useRouter()
 
   useEffect(() => {
     startCamera()
     return () => {
       stopCamera()
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
     }
   }, [])
 
@@ -40,6 +46,14 @@ export default function QRScanner({ onClose }: QRScannerProps) {
         videoRef.current.onloadedmetadata = () => {
           setScanning(true)
           scanQRCode()
+          setLoading(true)
+          setNoQrFound(false)
+          // Set timeout for no QR found popup after 15 seconds
+          timeoutRef.current = setTimeout(() => {
+            setLoading(false)
+            setNoQrFound(true)
+            setScanning(false)
+          }, 15000)
         }
       }
     } catch (err) {
@@ -74,28 +88,41 @@ export default function QRScanner({ onClose }: QRScannerProps) {
 
         if (code) {
           console.log('QR Code detected:', code.data)
-          
+
+          // Clear the timeout since QR was found
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
+          }
+
+          setLoading(true)
+          setScanning(false)
+
           // Extract queue ID from URL
           try {
             const url = new URL(code.data)
             const queueId = url.searchParams.get('id') || url.pathname.split('/').pop()
-            
+
             if (queueId) {
-              stopCamera()
-              onClose()
-              router.push(`/join?id=${queueId}`)
+              // Add slight delay before redirecting
+              setTimeout(() => {
+                stopCamera()
+                onClose()
+                router.push(`/join?id=${queueId}`)
+              }, 1000)
               return
             }
           } catch {
             // If not a URL, treat the whole string as queue ID
-            stopCamera()
-            onClose()
-            router.push(`/join?id=${code.data}`)
+            setTimeout(() => {
+              stopCamera()
+              onClose()
+              router.push(`/join?id=${code.data}`)
+            }, 1000)
             return
           }
         }
       }
-      
+
       if (scanning) {
         requestAnimationFrame(scan)
       }
@@ -140,6 +167,36 @@ export default function QRScanner({ onClose }: QRScannerProps) {
             <p className="text-red-600 mb-4">{error}</p>
             <button
               onClick={startCamera}
+              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : loading ? (
+          <div className="text-center py-8">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            >
+              <Zap className="w-8 h-8 text-white" />
+            </motion.div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">QR Code Found!</h3>
+            <p className="text-gray-600">Redirecting you to the queue...</p>
+          </div>
+        ) : noQrFound ? (
+          <div className="text-center py-8">
+            <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <AlertCircle className="w-8 h-8 text-yellow-600" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No QR Code Found</h3>
+            <p className="text-gray-600 mb-4">Please make sure the QR code is clearly visible and try again.</p>
+            <button
+              onClick={() => {
+                setNoQrFound(false)
+                setLoading(false)
+                startCamera()
+              }}
               className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
             >
               Try Again
