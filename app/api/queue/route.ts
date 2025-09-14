@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { storage } from '@/lib/storage'
 import { Queue, SERVICE_CATEGORIES } from '@/lib/types'
 import { sanitizeInput, generateSecureId } from '@/lib/security'
+import { SecurityDetector } from '@/lib/security-detector'
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,12 +11,20 @@ export async function POST(request: NextRequest) {
     if (!title || !category || !SERVICE_CATEGORIES[category as keyof typeof SERVICE_CATEGORIES]) {
       return NextResponse.json({ error: 'Invalid data' }, { status: 400 })
     }
+    
+    // Security validation
+    const titleValidation = SecurityDetector.sanitizeAndValidate(title)
+    if (!titleValidation.isValid) {
+      return NextResponse.json({ 
+        error: 'Security Alert: Malicious input detected. Your attempt has been logged.' 
+      }, { status: 403 })
+    }
 
     const queueId = generateSecureId()
     
     const queue: Queue = {
       id: queueId,
-      title: sanitizeInput(title),
+      title: titleValidation.sanitized,
       category,
       services: [...SERVICE_CATEGORIES[category as keyof typeof SERVICE_CATEGORIES].services],
       items: [],
