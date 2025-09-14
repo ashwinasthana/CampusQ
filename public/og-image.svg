@@ -1,0 +1,75 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F1F5F9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0E7FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Background Elements -->
+  <circle cx="100" cy="100" r="150" fill="#3B82F6" opacity="0.05"/>
+  <circle cx="1100" cy="530" r="120" fill="#6366F1" opacity="0.05"/>
+  
+  <!-- Main Content Container -->
+  <rect x="100" y="100" width="1000" height="430" rx="24" fill="white" fill-opacity="0.6" stroke="white" stroke-opacity="0.2" stroke-width="1"/>
+  
+  <!-- Logo -->
+  <text x="600" y="220" font-family="Arial, sans-serif" font-size="84" font-weight="900" text-anchor="middle" fill="#1F2937">Campus<tspan fill="url(#logoGrad)">Q</tspan></text>
+  
+  <!-- Tagline -->
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="32" font-weight="600" text-anchor="middle" fill="#4B5563">Smart Campus Queue Management</text>
+  
+  <!-- Features -->
+  <g transform="translate(200, 350)">
+    <!-- QR Code Feature -->
+    <rect x="0" y="0" width="48" height="48" rx="8" fill="url(#logoGrad)"/>
+    <rect x="8" y="8" width="32" height="32" rx="4" fill="white"/>
+    <rect x="12" y="12" width="6" height="6" fill="url(#logoGrad)"/>
+    <rect x="30" y="12" width="6" height="6" fill="url(#logoGrad)"/>
+    <rect x="12" y="30" width="6" height="6" fill="url(#logoGrad)"/>
+    <rect x="22" y="22" width="4" height="4" fill="url(#logoGrad)"/>
+    <text x="60" y="32" font-family="Arial, sans-serif" font-size="24" font-weight="500" fill="#374151">QR Scanning</text>
+  </g>
+  
+  <g transform="translate(476, 350)">
+    <!-- Real-time Feature - Clock -->
+    <rect x="0" y="0" width="48" height="48" rx="8" fill="url(#accentGrad)"/>
+    <circle cx="24" cy="24" r="10" fill="white"/>
+    <line x1="24" y1="24" x2="24" y2="16" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+    <line x1="24" y1="24" x2="30" y2="24" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="24" cy="24" r="2" fill="#10B981"/>
+    <text x="60" y="32" font-family="Arial, sans-serif" font-size="24" font-weight="500" fill="#374151">Real-time Updates</text>
+  </g>
+  
+  <g transform="translate(776, 350)">
+    <!-- No Registration Feature - User Silhouette -->
+    <rect x="0" y="0" width="48" height="48" rx="8" fill="url(#logoGrad)"/>
+    <circle cx="24" cy="18" r="6" fill="white"/>
+    <path d="M12 36 Q12 28 24 28 Q36 28 36 36 L36 38 L12 38 Z" fill="white"/>
+    <text x="60" y="32" font-family="Arial, sans-serif" font-size="24" font-weight="500" fill="#374151">No Registration</text>
+  </g>
+  
+  <!-- Queue Lines Decoration -->
+  <g transform="translate(150, 450)" opacity="0.3">
+    <rect x="0" y="0" width="200" height="3" rx="1.5" fill="url(#logoGrad)"/>
+    <rect x="0" y="8" width="160" height="3" rx="1.5" fill="url(#logoGrad)"/>
+    <rect x="0" y="16" width="180" height="3" rx="1.5" fill="url(#logoGrad)"/>
+  </g>
+  
+  <g transform="translate(850, 450)" opacity="0.3">
+    <rect x="0" y="0" width="200" height="3" rx="1.5" fill="url(#logoGrad)"/>
+    <rect x="40" y="8" width="160" height="3" rx="1.5" fill="url(#logoGrad)"/>
+    <rect x="20" y="16" width="180" height="3" rx="1.5" fill="url(#logoGrad)"/>
+  </g>
+</svg>
