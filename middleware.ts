@@ -30,41 +30,49 @@ export function middleware(request: NextRequest) {
   // Check if IP is temporarily blocked
   const blockTime = blockedIPs.get(ip)
   if (blockTime && Date.now() - blockTime < 300000) { // 5 minute block
-    return new NextResponse('Access Denied: Malicious Activity Detected', { 
+    console.log(`Security: Blocked IP ${ip} - Previous malicious activity`)
+    return new NextResponse('Access Denied: Malicious Activity Detected', {
       status: 403,
       headers: {
         'X-Security-Block': 'MALICIOUS_ACTIVITY'
       }
     })
   }
-  
+
   // Detect hacking tools
   const headers = Object.fromEntries(request.headers.entries())
   if (SecurityDetector.detectHackingTool(userAgent, headers)) {
+    console.log(`Security: Blocked hacking tool from IP ${ip}, UA: ${userAgent}`)
     blockedIPs.set(ip, Date.now())
-    return new NextResponse('Access Denied: Automated Security Tools Not Allowed', { 
+    return new NextResponse('Access Denied: Automated Security Tools Not Allowed', {
       status: 403,
       headers: {
         'X-Security-Block': 'HACKING_TOOL_DETECTED'
       }
     })
   }
-  
-  // Check URL for malicious patterns
+
+  // Check URL for malicious patterns with improved false positive handling
   if (SecurityDetector.isMaliciousInput(url)) {
-    const attempts = (suspiciousAttempts.get(ip) || 0) + 1
-    suspiciousAttempts.set(ip, attempts)
-    
-    if (attempts >= 5) {
-      blockedIPs.set(ip, Date.now())
-    }
-    
-    return new NextResponse('Access Denied: Malicious Input Detected', { 
-      status: 403,
-      headers: {
-        'X-Security-Block': 'MALICIOUS_INPUT'
+    // Only count suspicious attempts if URL is not a known safe path
+    const safePaths = ['/favicon.ico', '/robots.txt', '/sitemap.xml']
+    if (!safePaths.includes(url)) {
+      const attempts = (suspiciousAttempts.get(ip) || 0) + 1
+      suspiciousAttempts.set(ip, attempts)
+
+      console.log(`Security: Malicious input detected from IP ${ip}, URL: ${url}, attempts: ${attempts}`)
+
+      if (attempts >= 5) {
+        blockedIPs.set(ip, Date.now())
       }
-    })
+
+      return new NextResponse('Access Denied: Malicious Input Detected', {
+        status: 403,
+        headers: {
+          'X-Security-Block': 'MALICIOUS_INPUT'
+        }
+      })
+    }
   }
   
   const response = NextResponse.next()
@@ -97,10 +105,11 @@ export function middleware(request: NextRequest) {
   
   response.headers.set('Content-Security-Policy', csp)
   
-  // Rate limiting
+  // Rate limiting - adjusted for better user experience while maintaining security
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/')
-  
-  const maxRequests = isApiRoute ? 50 : 200
+  const isMobile = userAgent.includes('Mobile') || userAgent.includes('Android') || userAgent.includes('iPhone')
+
+  const maxRequests = isApiRoute ? (isMobile ? 75 : 100) : (isMobile ? 300 : 500)
   
   if (isRateLimited(ip, maxRequests)) {
     return new NextResponse('Too Many Requests', { 
