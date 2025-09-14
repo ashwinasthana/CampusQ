@@ -139,51 +139,78 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/10 bg-white/30 backdrop-blur-xl">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          <div className="flex flex-col items-center space-y-4 sm:space-y-6">
-            <div className="flex items-center space-x-2 sm:space-x-3 text-gray-600">
-              <span className="text-sm sm:text-base">Made with</span>
-              <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 animate-pulse" />
-              <span className="text-sm sm:text-base">by</span>
-              <span className="font-semibold text-gray-900 text-sm sm:text-base">Ashwin Asthana</span>
+      <footer className="relative z-10 border-t border-white/20 bg-white/40 backdrop-blur-xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            {/* Brand Section */}
+            <div className="md:col-span-2">
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mr-3">
+                  <QrCode className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold text-gray-900">CampusQ</span>
+              </div>
+              <p className="text-gray-600 mb-4 max-w-md">
+                Revolutionizing campus queue management with intelligent, real-time solutions for educational institutions worldwide.
+              </p>
+              <div className="flex items-center space-x-4">
+                <motion.a
+                  href="https://github.com/ashwinasthana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -2 }}
+                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5 text-gray-700" />
+                </motion.a>
+                <motion.a
+                  href="https://www.linkedin.com/in/ashwinasthanax/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -2 }}
+                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 text-blue-600" />
+                </motion.a>
+              </div>
             </div>
-            
-            <div className="flex items-center space-x-4">
-              <motion.a
-                href="https://github.com/ashwinasthana"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/20 hover:bg-white/80 transition-all duration-300"
-                aria-label="GitHub Profile"
-              >
-                <Github className="w-5 h-5 text-gray-700" />
-              </motion.a>
-              
-              <motion.a
-                href="https://www.linkedin.com/in/ashwinasthanax/"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/20 hover:bg-white/80 transition-all duration-300"
-                aria-label="LinkedIn Profile"
-              >
-                <Linkedin className="w-5 h-5 text-blue-600" />
-              </motion.a>
+
+            {/* Product Links */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
+              <ul className="space-y-2">
+                <li><Link href="/create" className="text-gray-600 hover:text-blue-600 transition-colors">Create Queue</Link></li>
+                <li><Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">Join Queue</Link></li>
+                <li><a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a></li>
+              </ul>
             </div>
-            
-            <p className="text-sm text-gray-500 text-center">
-              © 2024 CampusQ. Built for efficient campus queue management.
-            </p>
+
+            {/* Company Links */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Company</h3>
+              <ul className="space-y-2">
+                <li><a href="mailto:ashwin@campusq.com" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Privacy</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row justify-between items-center">
+            <div className="flex items-center text-gray-600 mb-4 sm:mb-0">
+              <span className="text-sm">© 2024 CampusQ. All rights reserved.</span>
+            </div>
+            <div className="flex items-center text-gray-500 text-sm">
+              <span>Built with</span>
+              <Heart className="w-4 h-4 text-red-500 mx-1" />
+              <span>by</span>
+              <a href="https://github.com/ashwinasthana" className="font-medium text-gray-700 hover:text-blue-600 ml-1 transition-colors">
+                Ashwin Asthana
+              </a>
+            </div>
           </div>
         </div>
       </footer>
