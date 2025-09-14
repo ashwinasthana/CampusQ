@@ -44,37 +44,10 @@ export default function CreateQueuePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Enhanced Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 15, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"
-        />
-        <motion.div 
-          animate={{ 
-            x: [0, -60, 0],
-            y: [0, 40, 0],
-            scale: [1, 0.8, 1],
-            rotate: [360, 0]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 3
-          }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-        />
+      {/* Subtle background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -92,38 +65,17 @@ export default function CreateQueuePage() {
           <div className="relative p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl bg-white/60 backdrop-blur-xl border border-white/20 shadow-xl">
             <div className="text-center mb-8 sm:mb-10">
               <motion.div 
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ 
-                  duration: 0.8,
-                  type: "spring",
-                  stiffness: 200
-                }}
-                whileHover={{ 
-                  scale: 1.1,
-                  rotate: [0, -10, 10, 0],
-                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
-                }}
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 cursor-pointer"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6"
               >
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 360]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <QrCode className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-                </motion.div>
+                <QrCode className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </motion.div>
               <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900"
               >
                 Create New Queue
@@ -131,7 +83,7 @@ export default function CreateQueuePage() {
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-gray-600 text-base sm:text-lg px-4"
               >
                 Set up a queue for your service counter
@@ -158,46 +110,23 @@ export default function CreateQueuePage() {
                     <motion.button
                       key={key}
                       type="button"
-                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ 
-                        duration: 0.5, 
-                        delay: 0.7 + (Object.keys(SERVICE_CATEGORIES).indexOf(key) * 0.1),
-                        type: "spring",
-                        stiffness: 150
+                        duration: 0.4, 
+                        delay: 0.3 + (Object.keys(SERVICE_CATEGORIES).indexOf(key) * 0.1)
                       }}
-                      whileHover={{ 
-                        scale: 1.08, 
-                        y: -8,
-                        boxShadow: "0 15px 30px rgba(59, 130, 246, 0.2)",
-                        borderColor: "#60A5FA"
-                      }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setFormData({ ...formData, category: key as keyof typeof SERVICE_CATEGORIES })}
-                      className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 relative overflow-hidden ${
+                      className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 ${
                         formData.category === key
                           ? 'border-blue-400 bg-blue-50 shadow-lg shadow-blue-500/25'
                           : 'border-gray-200 bg-white/80 hover:border-blue-200 hover:bg-blue-50/50'
                       }`}
                     >
-                      {formData.category === key && (
-                        <motion.div
-                          layoutId="selectedCategory"
-                          className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-xl sm:rounded-2xl"
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        />
-                      )}
-                      <motion.div 
-                        whileHover={{ 
-                          scale: 1.2,
-                          rotate: [0, -10, 10, 0]
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className="text-2xl sm:text-3xl mb-2 sm:mb-3 relative z-10"
-                      >
-                        {category.icon}
-                      </motion.div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base relative z-10">{category.name}</div>
+                      <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{category.icon}</div>
+                      <div className="font-semibold text-gray-900 text-sm sm:text-base">{category.name}</div>
                     </motion.button>
                   ))}
                 </div>

@@ -12,11 +12,11 @@ export const metadata = {
   openGraph: {
     title: 'CampusQ - Smart Campus Queue Management',
     description: 'Transform your campus experience with intelligent queue management. No more waiting in lines.',
-    url: 'https://campusq.vercel.app',
+    url: 'https://campus-q-two.vercel.app/',
     siteName: 'CampusQ',
     images: [
       {
-        url: 'https://campusq.vercel.app/og-image.png',
+        url: 'https://campus-q-two.vercel.app/og-image.png',
         width: 1200,
         height: 630,
         alt: 'CampusQ - Smart Campus Queue Management',
@@ -29,7 +29,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'CampusQ - Smart Campus Queue Management',
     description: 'Transform your campus experience with intelligent queue management. No more waiting in lines.',
-    images: ['https://campusq.vercel.app/og-image.png'],
+    images: ['https://campus-q-two.vercel.app/og-image.png'],
   },
 }
 
