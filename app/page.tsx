@@ -19,12 +19,12 @@ export default function HomePage() {
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-24 lg:pb-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-5xl mx-auto"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -36,25 +36,25 @@ export default function HomePage() {
               <span className="text-sm font-medium text-gray-700">Revolutionary Queue Management</span>
             </motion.div>
 
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
               Campus<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Q</span>
             </h1>
             
-            <p className="text-xl sm:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-8 sm:mb-12 leading-relaxed max-w-4xl mx-auto px-2">
               Transform your campus experience with intelligent queue management. 
               <span className="text-blue-600 font-semibold"> No more waiting in lines.</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link href="/create">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
+              <Link href="/create" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="group w-full px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <span className="flex items-center justify-center">
+                  <span className="flex items-center justify-center text-sm sm:text-base">
                     Create Queue
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </motion.button>
               </Link>
@@ -63,25 +63,25 @@ export default function HomePage() {
                 onClick={() => setShowScanner(true)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-8 py-4 bg-white/70 backdrop-blur-sm border border-white/20 text-gray-700 font-semibold rounded-2xl hover:bg-white/90 transition-all duration-300"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/70 backdrop-blur-sm border border-white/20 text-gray-700 font-semibold rounded-xl sm:rounded-2xl hover:bg-white/90 transition-all duration-300 text-sm sm:text-base"
               >
                 Join Queue
               </motion.button>
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-col items-center"
               >
-                <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
-                  <Zap className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-3 sm:mb-4">
+                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Real-time Updates</h3>
-                <p className="text-sm text-gray-600 text-center">Live position tracking and notifications</p>
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Real-time Updates</h3>
+                <p className="text-xs sm:text-sm text-gray-600 text-center leading-relaxed">Live position tracking and notifications</p>
               </motion.div>
 
               <motion.div
@@ -90,11 +90,11 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex flex-col items-center"
               >
-                <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-3 sm:mb-4">
+                  <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">No Registration</h3>
-                <p className="text-sm text-gray-600 text-center">Instant access with QR code scanning</p>
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">No Registration</h3>
+                <p className="text-xs sm:text-sm text-gray-600 text-center leading-relaxed">Instant access with QR code scanning</p>
               </motion.div>
 
               <motion.div
@@ -103,11 +103,11 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="flex flex-col items-center"
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
-                  <Clock className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-3 sm:mb-4">
+                  <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Smart Timing</h3>
-                <p className="text-sm text-gray-600 text-center">AI-powered wait time predictions</p>
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Smart Timing</h3>
+                <p className="text-xs sm:text-sm text-gray-600 text-center leading-relaxed">AI-powered wait time predictions</p>
               </motion.div>
             </div>
           </motion.div>
@@ -116,13 +116,13 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/10 bg-white/30 backdrop-blur-xl">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-col items-center space-y-6">
-            <div className="flex items-center space-x-3 text-gray-600">
-              <span className="text-base">Made with</span>
-              <Heart className="w-5 h-5 text-red-500 animate-pulse" />
-              <span className="text-base">by</span>
-              <span className="font-semibold text-gray-900">Ashwin Asthana</span>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="flex flex-col items-center space-y-4 sm:space-y-6">
+            <div className="flex items-center space-x-2 sm:space-x-3 text-gray-600">
+              <span className="text-sm sm:text-base">Made with</span>
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 animate-pulse" />
+              <span className="text-sm sm:text-base">by</span>
+              <span className="font-semibold text-gray-900 text-sm sm:text-base">Ashwin Asthana</span>
             </div>
             
             <div className="flex items-center space-x-4">
