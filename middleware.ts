@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
   
   // Check if IP is temporarily blocked
   const blockTime = blockedIPs.get(ip)
-  if (blockTime && Date.now() - blockTime < 3600000) { // 1 hour block
+  if (blockTime && Date.now() - blockTime < 300000) { // 5 minute block
     return new NextResponse('Access Denied: Malicious Activity Detected', { 
       status: 403,
       headers: {
@@ -55,7 +55,7 @@ export function middleware(request: NextRequest) {
     const attempts = (suspiciousAttempts.get(ip) || 0) + 1
     suspiciousAttempts.set(ip, attempts)
     
-    if (attempts >= 3) {
+    if (attempts >= 5) {
       blockedIPs.set(ip, Date.now())
     }
     

@@ -40,22 +40,8 @@ export class SecurityDetector {
     'sqlmap',
     'nmap',
     'nikto',
-    'dirb',
-    'dirbuster',
-    'gobuster',
-    'wfuzz',
-    'ffuf',
-    'hydra',
-    'medusa',
-    'nessus',
-    'openvas',
     'metasploit',
     'msfconsole',
-    'curl',
-    'wget',
-    'python-requests',
-    'postman',
-    'insomnia',
     'owasp',
     'zap',
     'w3af',
@@ -91,22 +77,8 @@ export class SecurityDetector {
     
     const ua = userAgent.toLowerCase()
     
-    // Check for blocked tools in user agent
+    // Only check for serious hacking tools
     if (this.BLOCKED_TOOLS.some(tool => ua.includes(tool))) {
-      return true
-    }
-
-    // Check for suspicious header combinations
-    const suspiciousHeaderCount = this.SUSPICIOUS_HEADERS.filter(
-      header => headers[header]
-    ).length
-
-    if (suspiciousHeaderCount > 2) {
-      return true
-    }
-
-    // Check for automated tool patterns
-    if (ua.includes('bot') && !ua.includes('googlebot') && !ua.includes('bingbot')) {
       return true
     }
 
