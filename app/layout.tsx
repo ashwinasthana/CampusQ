@@ -9,6 +9,28 @@ const montserrat = Montserrat({
 export const metadata = {
   title: 'CampusQ',
   description: 'Efficient queue management for campus services',
+  openGraph: {
+    title: 'CampusQ - Smart Campus Queue Management',
+    description: 'Transform your campus experience with intelligent queue management. No more waiting in lines.',
+    url: 'https://campusq.vercel.app',
+    siteName: 'CampusQ',
+    images: [
+      {
+        url: 'https://campusq.vercel.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'CampusQ - Smart Campus Queue Management',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CampusQ - Smart Campus Queue Management',
+    description: 'Transform your campus experience with intelligent queue management. No more waiting in lines.',
+    images: ['https://campusq.vercel.app/og-image.png'],
+  },
 }
 
 export default function RootLayout({
@@ -25,15 +47,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta property="og:image" content="https://campusq.vercel.app/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:title" content="CampusQ - Smart Campus Queue Management" />
-        <meta property="og:description" content="Transform your campus experience with intelligent queue management. No more waiting in lines." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://campusq.vercel.app" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://campusq.vercel.app/og-image.png" />
       </head>
       <body className={`${montserrat.className} min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100`}>
         {children}
