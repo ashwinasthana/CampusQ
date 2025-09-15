@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ashwinasthana/CampusQ/"><img alt="GitHub stars" src="https://img.shields.io/github/stars/yourusername/campusq?style=flat-square" /></a>
-  <a href="https://github.com/ashwinasthana/CampusQ/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/yourusername/campusq?style=flat-square" /></a>
+  <a href="https://github.com/ashwinasthana/CampusQ/"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ashwinasthana/CampusQ?style=flat-square" /></a>
+  <a href="https://github.com/ashwinasthana/CampusQ/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/ashwinasthana/CampusQ?style=flat-square" /></a>
   <a href="https://github.com/ashwinasthana/CampusQ/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" /></a>
   <a href="https://campus-q-two.vercel.app"><img alt="Live demo" src="https://img.shields.io/badge/demo-live-brightgreen?style=flat-square" /></a>
 </p>
@@ -125,8 +125,8 @@ CampusQ solves these problems with intelligent, data-driven queue management.
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/campusq.git
-cd campusq
+git clone https://github.com/ashwinasthana/CampusQ.git
+cd CampusQ
 
 # Install dependencies
 npm install
@@ -262,10 +262,10 @@ We welcome contributions! Here's how to get started:
 ### Development Setup
 ```bash
 # Fork the repository
-git fork https://github.com/yourusername/campusq
+git clone https://github.com/ashwinasthana/CampusQ.git
 
 # Clone your fork
-git clone https://github.com/yourusername/campusq.git
+git clone https://github.com/YOUR-USERNAME/CampusQ.git
 
 # Create a feature branch
 git checkout -b feature/your-feature-name
@@ -387,7 +387,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Enterprise Support
 For campus-wide deployments and custom integrations, contact us at:
 - 📧 Email: ashwinasthanax@gmail.com
-- 🌐 Website: [campusq.edu/enterprise]([https://campus-q-two.vercel.app/](https://campus-q-two.vercel.app/))
+- 🌐 Website: [https://campus-q-two.vercel.app/](https://campus-q-two.vercel.app/)
 
 ---
 
